@@ -1,0 +1,30 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
+
+// bower:scss
+@import "../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
+// endbower
+input {
+  outline:none;
+  width:200px;
+}
+
+@-webkit-keyframes slideIn {
+  0% {opacity:0;left:200px}
+  100% {left:0}
+}
+
+.error {
+
+  p {
+    color:red;
+    border:1px solid #ff2929;
+    padding:5px 12px;
+    background:rgba(255, 0, 0, 0.31);
+    display:inline-block;
+    border-radius:5px;
+    position:relative;
+    right:0;
+    -webkit-animation: slideIn .7s ease 1;
+  }
+
+}
