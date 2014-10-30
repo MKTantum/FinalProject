@@ -5,3 +5,9 @@ Final.ref = new Firebase("https://sportsproject.firebaseio.com/");
 Final.ApplicationAdadpter = DS.FirebaseAdapter.extend({
   firebase:Final.ref
 })
+
+Final.ChatAdapter = DS.ApplicationAdapter.extend({
+    pathForType: function (type) {
+      return 'Messages';
+    }
+})
