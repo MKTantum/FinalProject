@@ -56,7 +56,18 @@
 
         </header>
         <div class='chat-container'>
-
+          <div class='chat'>
+            <div class='messages'>
+              {{#each}}
+                <div class='message'>
+                  <strong>{{user.username}}: </strong>
+                  <span class='content'>{{content}}</span>
+                  <span class='time'>{{date-format createdAt}}</span>
+                </div>
+              {{/each}}
+            </div>
+              {{input value=newMessage placeholder="Write Here" action='post'}}
+          </div>
         </div>
       </script>
 
@@ -104,9 +115,11 @@
       <script src="js/controllers/signUp_controller.js"></script>
       <script src="js/controllers/login_controller.js"></script>
       <script src="js/controllers/index_controller.js"></script>
+      <script src="js/controllers/chat_controller.js"></script>
       <script src="js/models/user.js"></script>
       <script src="js/models/message.js"></script>
       <script src="js/models/game.js"></script>
+      <script src="js/models/team.js"></script>
       <!-- endbuild -->
     </body>
 </html>

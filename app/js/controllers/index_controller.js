@@ -1,4 +1,4 @@
-Final.IndexController = Ember.Controller.extend({
+Final.IndexController = Ember.ArrayController.extend({
   needs:['application'],
 
   actions: {
