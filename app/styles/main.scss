@@ -53,6 +53,11 @@ input, button {
 
 }
 
+@-webkit-keyframes expand {
+  0% {padding:0 10px;}
+  100% {padding:10px;}
+}
+
 .chat {
   width:80%;
   background:lightgreen;
@@ -67,7 +72,9 @@ input, button {
 
 .message {
   border-bottom:1px solid black;
-  padding:10px 15px;
+  padding:10px;
+  /* -webkit-animation:expand 1s ease; */
+  position:relative;
 }
 
 .time {

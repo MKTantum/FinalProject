@@ -4,14 +4,36 @@ Final.SignUpController = Ember.Controller.extend({
   actions: {
     signUp: function () {
       var self=this;
+      var email=this.get('email');
+      var password = this.get('password');
       Final.ref.createUser({
-        email: this.get('email'),
-        password:this.get('password')
+        email: email,
+        password:password
       }, function (error) {
         if (error===null) {
           $('input').val('');
           self.transitionToRoute('index');
-          console.log('Created User');
+          Final.ref.authWithPassword({
+            email:email,
+            password:password
+          }, function (error, authData) {
+            if (error===null) {
+              var user = self.store.createRecord('user', {
+                id:authData.uid,
+                username:self.get('username')
+              });
+              user.save();
+              self.set('controllers.application.currentUser', user);
+              console.log('controllers.application.currentUser');
+            } else {
+              console.log(error.message);
+            }
+          }, {
+            remember:"sessionOnly"
+          })
+
+
+          console.log('Created User')
         } else {
           var fadeout = function() {
             $('.error').fadeOut(1000, function () {
@@ -25,6 +47,8 @@ Final.SignUpController = Ember.Controller.extend({
           console.log(error.message);
         }
       })
+
+
     }
   }
 })

@@ -9,8 +9,7 @@ Final.LoginController = Ember.Controller.extend({
         password:this.get('password')
       }, function (error, authData) {
         if (error===null) {
-          $('input').val('');
-          $('[type=text]').val('');
+          this.set('controllers.application.currentUser', user);
           console.log("Successfully logged in as", authData.uid);
           self.transitionToRoute('index');
         } else {

@@ -4,16 +4,21 @@ Final.ChatController = Ember.ArrayController.extend({
 
   actions: {
     post: function () {
-      console.log(this);
-      var username = '<Final.User:ember406:simplelogin:2>';
-      var message = this.store.createRecord('message', {
-        createdAt: new Date(),
-        content:this.get('newMessage'),
-        // user:{username:'Someone not so important'},
-
-      });
-      message.save();
-      this.set('newMessage','');
+      var text = localStorage.getItem('firebase:session::sportsproject');
+      var parsed = JSON.parse(text);
+      var user = parsed.uid;
+      var self = this;
+      console.log(this.get('newMessage'));
+      this.store.find('user', user).then(function(user){
+        console.log("The user",user);
+        var message = self.store.createRecord('message', {
+          createdAt: new Date(),
+          content:self.get('newMessage'),
+          user:user
+        });
+        message.save();
+        self.set('newMessage','');
+      })
     }
   }
 })
