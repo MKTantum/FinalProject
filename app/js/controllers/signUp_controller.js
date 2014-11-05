@@ -23,8 +23,6 @@ Final.SignUpController = Ember.Controller.extend({
                 username:self.get('username')
               });
               user.save();
-              self.set('controllers.application.currentUser', user);
-              console.log('controllers.application.currentUser');
             } else {
               console.log(error.message);
             }
