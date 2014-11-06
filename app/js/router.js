@@ -1,11 +1,11 @@
 Final.Router.map(function () {
   this.route('signUp');
   this.route('login');
-  this.route('chat');
+  this.route('game', {path:'/game/:game_id'});
 });
 
-Final.ChatRoute = Ember.Route.extend({
-  model: function () {
-    return this.store.find('message');
+Final.GameRoute = Ember.Route.extend({
+  model: function (params) {
+      return this.store.find('game',params.game_id)
   }
 });

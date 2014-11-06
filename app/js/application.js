@@ -7,7 +7,11 @@ Final.ApplicationAdapter = DS.FirebaseAdapter.extend({
 });
 
 Ember.Handlebars.helper('date-format', function (date) {
-  return moment(date).format('h:mm a');
+  if ((new Date().getTime() - date) > 86400000) {
+      return moment(date).format('MMM Do h:mm a');
+  } else {
+      return moment(date).format('h:mm a');
+  }
 });
 
 // This is an attempt at connecting to the messages of game_id_1

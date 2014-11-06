@@ -25,6 +25,12 @@
           <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
       <![endif]-->
 
+      <script type='text/x-handlebars' data-template-name='application'>
+        <header>
+        </header>
+        {{outlet}}
+      </script>
+
       <script type='text/x-handlebars' data-template-name='index'>
         <h1>You made it to the index!!!</h1>
         {{#link-to 'chat'}}Chat App{{/link-to}}
@@ -53,14 +59,14 @@
         </form>
       </script>
 
-      <script type='text/x-handlebars' data-template-name='chat'>
+      <script type='text/x-handlebars' data-template-name='game'>
         <header>
 
         </header>
         <div class='chat-container'>
           <div class='chat'>
             <div class='messages'>
-              {{#each}}
+              {{#each messages}}
                 <div class='message'>
                   <strong>{{user.username}}: </strong>
                   <span class='content'>{{content}}</span>
@@ -69,6 +75,8 @@
               {{/each}}
             </div>
               {{input value=newMessage placeholder="Write Here" action='post'}}
+          </div>
+          <div class='current-users'>
           </div>
         </div>
       </script>
@@ -118,7 +126,7 @@
       <script src="js/controllers/signUp_controller.js"></script>
       <script src="js/controllers/login_controller.js"></script>
       <script src="js/controllers/index_controller.js"></script>
-      <script src="js/controllers/chat_controller.js"></script>
+      <script src="js/controllers/game_controller.js"></script>
       <script src="js/models/user.js"></script>
       <script src="js/models/message.js"></script>
       <script src="js/models/game.js"></script>

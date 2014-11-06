@@ -1,5 +1,5 @@
 Final.Game = DS.Model.extend({
-  messages:DS.hasMany('message'),
-  teamOne:DS.belongsTo('team'),
-  teamTwo:DS.belongsTo('team'),
+  messages:DS.hasMany('message', {async:true}),
+  teamOne:DS.attr('string'),
+  teamTwo:DS.attr('string')
 })
