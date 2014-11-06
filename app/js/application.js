@@ -6,19 +6,36 @@ Final.ApplicationAdapter = DS.FirebaseAdapter.extend({
   firebase:Final.ref
 });
 
-Ember.Handlebars.helper('date-format', function (date) {
-  if ((new Date().getTime() - date) > 86400000) {
-      return moment(date).format('MMM Do h:mm a');
-  } else {
-      return moment(date).format('h:mm a');
-  }
+moment.locale('en', {
+    calendar : {
+        lastDay : 'MMM Do LT',
+        sameDay : 'LT',
+        nextDay : '[Tomorrow at] LT',
+        lastWeek : 'MMM Do LT',
+        nextWeek : 'dddd [at] LT',
+        sameElse : 'MMM Do LT'
+    }
 });
 
-// This is an attempt at connecting to the messages of game_id_1
+Final.GameView = Ember.View.extend({
+  didInsertElement: function () {
+    console.log('didInsertElement fired');
+    console.log($('.messages div').last().offset(top));
+    console.log("Length", this.get('controller.messages.length'));
 
-//
-// Final.ChatAdapter = Final.ApplicationAdapter.extend({
-//   pathForType: function (type) {
-//     return 'games/game_id_1/messages';
-//   }
-// })
+    // this.$('.messages').animate({scrollTop: this.$('.messages div').last().offset().top }, 1000);
+  },
+
+  messagesWereFetched: function(){
+    console.log("Messages fetched", this.get('controller.content.messages.isFulfilled'))
+    if(this.get('controller.content.messages.isFulfilled')){
+      Ember.run.next(this, function(){
+        this.$('.messages').animate({scrollTop: this.$('.messages div').last().offset().top }, 1000);
+      });
+    }
+  }.observes('controller.content.messages.isFulfilled')
+})
+
+Ember.Handlebars.helper('date-format', function (date) {
+      return moment(date).calendar();;
+});

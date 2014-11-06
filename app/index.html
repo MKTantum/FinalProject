@@ -32,8 +32,10 @@
       </script>
 
       <script type='text/x-handlebars' data-template-name='index'>
-        <h1>You made it to the index!!!</h1>
-        {{#link-to 'chat'}}Chat App{{/link-to}}
+        <h1>Upcoming Games</h1>
+        {{#each}}
+          <div>{{#link-to 'game' this}} {{teamOne}} Vs. {{teamTwo}} {{/link-to}}</div>
+        {{/each}}
         <button {{action "logout"}}>Log Out</button>
       </script>
 
@@ -68,8 +70,10 @@
             <div class='messages'>
               {{#each messages}}
                 <div class='message'>
-                  <strong>{{user.username}}: </strong>
-                  <span class='content'>{{content}}</span>
+                  <div class='words'>
+                    <strong>{{user.username}}: </strong>
+                    <span class='content'>{{content}}</span>
+                  </div>
                   <span class='time'>{{date-format createdAt}}</span>
                 </div>
               {{/each}}
@@ -77,6 +81,7 @@
               {{input value=newMessage placeholder="Write Here" action='post'}}
           </div>
           <div class='current-users'>
+            {{#link-to 'index'}}Index{{/link-to}}
           </div>
         </div>
       </script>
@@ -130,7 +135,6 @@
       <script src="js/models/user.js"></script>
       <script src="js/models/message.js"></script>
       <script src="js/models/game.js"></script>
-      <script src="js/models/team.js"></script>
       <!-- endbuild -->
     </body>
 </html>
