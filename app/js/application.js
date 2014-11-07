@@ -30,7 +30,7 @@ Final.GameView = Ember.View.extend({
     console.log("Messages fetched", this.get('controller.content.messages.isFulfilled'))
     if(this.get('controller.content.messages.isFulfilled')){
       Ember.run.next(this, function(){
-        this.$('.messages').animate({scrollTop: this.$('.messages div').last().offset().top }, 1000);
+        this.$('.messages').animate({scrollTop: this.$('.messages div').last().offset().top }, 0);
       });
     }
   }.observes('controller.content.messages.isFulfilled')

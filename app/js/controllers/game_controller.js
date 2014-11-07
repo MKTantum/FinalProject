@@ -5,7 +5,6 @@ Final.GameController = Ember.ObjectController.extend({
   actions: {
     post: function () {
       console.log($('.messages div').last());
-      $('.messages').animate({scrollTop: $('.messages div').last().offset().top }, 500);
       var text = localStorage.getItem('firebase:session::sportsproject');
       if (text===null) {
         throw new Error('You must be logged in to chat');
@@ -21,6 +20,7 @@ Final.GameController = Ember.ObjectController.extend({
             user:user
           });
           message.save();
+          $('.messages').animate({scrollTop: $('.messages div').last().offset().top }, 500);
           self.get('model.messages').addObject(message);
           self.get('model').save();
           self.set('newMessage','');
