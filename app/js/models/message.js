@@ -1,8 +1,9 @@
 Final.Message = DS.Model.extend({
   content:DS.attr('string'),
-  user:DS.belongsTo('user'),
+  user:DS.belongsTo('user', {async:true}),
   game:DS.belongsTo('game'),
-  createdAt:DS.attr('date')
+  createdAt:DS.attr('date'),
+  reputation:DS.attr('number')
 });
 
 

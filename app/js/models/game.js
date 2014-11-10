@@ -2,7 +2,13 @@ Final.Game = DS.Model.extend({
   messages:DS.hasMany('message', {async:true}),
   teamOne:DS.belongsTo('team', {embedded:true}),
   teamTwo:DS.belongsTo('team', {embedded:true})
-})
+});
+
+// Final.GameAdapter = Final.ApplicationAdapter.extend({
+//   pathForType: function(){
+//     return "test";
+//   }
+// });
 
 Final.Team = DS.Model.extend({
   teamName:DS.attr('string'),

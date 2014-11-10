@@ -17,15 +17,23 @@ Final.GameController = Ember.ObjectController.extend({
           var message = self.store.createRecord('message', {
             createdAt: new Date(),
             content:self.get('newMessage'),
-            user:user
+            user:user,
+            reputation:0
           });
           message.save();
-          $('.messages').animate({scrollTop: $('.messages div').last().offset().top }, 500);
           self.get('model.messages').addObject(message);
-          self.get('model').save();
+          self.get('model').save().then($('.messages').animate({scrollTop: $('.messages div').last().offset().top }, 500));
           self.set('newMessage','');
         })
       }
+    },
+
+    like: function () {
+
+    },
+
+    dislike: function () {
+
     }
   }
 })

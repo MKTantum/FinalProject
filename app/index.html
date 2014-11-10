@@ -34,7 +34,7 @@
       <script type='text/x-handlebars' data-template-name='index'>
         <h1>Upcoming Games</h1>
         {{#each}}
-          <div>{{#link-to 'game' this}} {{teamOne}} Vs. {{teamTwo}} {{/link-to}}</div>
+          <div>{{#link-to 'game' this}} {{teamOne.id}} Vs. {{teamTwo.id}} {{/link-to}}</div>
         {{/each}}
         <button {{action "logout"}}>Log Out</button>
       </script>
@@ -102,7 +102,7 @@
       <script src="bower_components/jquery/dist/jquery.js"></script>
       <script src="bower_components/handlebars/handlebars.js"></script>
       <script src="bower_components/ember/ember.js"></script>
-      <script src="bower_components/ember-data/ember-data.js"></script>
+      <script src="bower_components/ember-data/index.js"></script>
       <script src="bower_components/firebase/firebase.js"></script>
       <script src="bower_components/emberfire/dist/emberfire.min.js"></script>
       <script src="bower_components/moment/moment.js"></script>
