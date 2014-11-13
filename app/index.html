@@ -25,18 +25,31 @@
           <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
       <![endif]-->
 
-      <script type='text/x-handlebars' data-template-name='application'>
-        <header>
-        </header>
-        {{outlet}}
-      </script>
-
       <script type='text/x-handlebars' data-template-name='index'>
-        <h1>Upcoming Games</h1>
-        {{#each}}
-          <div>{{#link-to 'game' this}} {{teamOne.id}} Vs. {{teamTwo.id}} {{/link-to}}</div>
-        {{/each}}
-        <button {{action "logout"}}>Log Out</button>
+      <!--<header>
+        <h1>Interception</h1>
+      </header>-->
+      <div class='container'>
+        <h2>Upcoming Games</h2>
+          {{#each}}
+            {{#link-to 'game' this}}
+              <div class='game-container'>
+                <div class='team-holder'>
+                  <img {{bind-attr src='teamOne.logo'}}>
+                  <span class='team-name'>{{teamOne.teamName}}</span>
+                  <div class='index-scoreboard'>{{teamOne.totalScore}}</div>
+                </div>
+                  <p>@</p>
+                <div class='team-holder'>
+                  <img {{bind-attr src='teamTwo.logo'}}>
+                  <span class='team-name'>{{teamTwo.teamName}}</span>
+                  <div class='index-scoreboard'>{{teamTwo.totalScore}}</div>
+                </div>
+              </div>
+            {{/link-to}}
+          {{/each}}
+        <div class='logout' {{action "logout"}}>Log Out</div>
+      </div>
       </script>
 
 
@@ -62,12 +75,23 @@
       </script>
 
       <script type='text/x-handlebars' data-template-name='game'>
-        <header>
-
-        </header>
         <div class='chat-container'>
+          <div class='teams'>
+            <div class='teamOne'>
+              <img {{bind-attr src="teamOne.logo"}} />
+              <span><strong>{{teamOne.teamName}}</strong></span>
+              <div class='scoreboard'>{{teamOne.totalScore}}</div>
+            </div>
+            <div class='teamTwo'>
+              <div class='scoreboard'>{{teamTwo.totalScore}}</div>
+              <span><strong>{{teamTwo.teamName}}</strong></span>
+              <img {{bind-attr src="teamTwo.logo"}} />
+            </div>
+          </div>
           <div class='chat'>
             <div class='messages'>
+
+
               {{#each messages}}
                 <div class='message'>
                   <div class='words'>
@@ -77,6 +101,8 @@
                   <span class='time'>{{date-format createdAt}}</span>
                 </div>
               {{/each}}
+
+
             </div>
               {{input value=newMessage placeholder="Write Here" action='post'}}
           </div>

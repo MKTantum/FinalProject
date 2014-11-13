@@ -22,18 +22,29 @@ Final.GameController = Ember.ObjectController.extend({
           });
           message.save();
           self.get('model.messages').addObject(message);
-          self.get('model').save().then($('.messages').animate({scrollTop: $('.messages div').last().offset().top }, 500));
+            var offset = this.$('.messages div').last().offset();
+            if (offset) {
+            this.$('.messages').animate({scrollTop: this.$('.messages div').last().offset().top }, 0);
+          }
+          console.log(self.get('model.messages').length);
+          self.get('model').save()
           self.set('newMessage','');
         })
       }
     },
 
-    like: function () {
-
+    like: function (message) {
+      var messageref = new Firebase("https://sportsproject.firebaseio.com/messages/" + message.id + '/reputation');
+      messageref.transaction(function (reputation) {
+        return reputation + 1;
+      });
     },
 
-    dislike: function () {
-
+    dislike: function (message) {
+      var messageref = new Firebase("https://sportsproject.firebaseio.com/messages/" + message.id + '/reputation');
+      messageref.transaction(function (reputation) {
+        return reputation - 1;
+      });
     }
   }
 })
