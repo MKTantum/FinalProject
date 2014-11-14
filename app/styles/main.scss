@@ -21,8 +21,8 @@ p {
 //=======================================================================
 
 @-webkit-keyframes expand {
-  0% {padding:0 10px;}
-  100% {padding:10px;}
+  0% {top:500px;}
+  100% {top:0}
 }
 
 @-webkit-keyframes slideIn {
@@ -44,15 +44,62 @@ p {
   }
 }
 
+//=========================================================================
+//                           Header
+//=========================================================================
+@mixin blur($amount) {
+    -webkit-filter: blur(#{$amount}px);
+    -moz-filter: blur(#{$amount}px);
+    -o-filter: blur(#{$amount}px);
+    -ms-filter: blur(#{$amount}px);
+    filter: blur(#{$amount}px);
+    margin-bottom: -#{$amount}px;
+}
+
+header {
+  height:575px;
+  border-bottom:3px solid black;
+  padding:5px;
+  background:#333;
+
+  h1 {
+    font-size:100px;
+    font-family: 'Poiret One', cursive;
+    font-shadow:0 2px 10px black;
+    color:white;
+    z-index:3;
+    margin-top:200;
+    text-align:center;
+    position:absolute;
+    left:0;
+    top:200px;
+    right:0;
+    text-shadow:0 4px 4px black;
+  }
+
+  img {
+    padding-bottom:5px;
+    z-index:0;
+    @include blur(2);
+    height:575px;
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    width:100%;
+  }
+
+}
+
 //========================================================================
 //                              Chat App
 //========================================================================
 
 .chat-container {
-  background:lightblue;
+  background:#4063AF;
   height:500px;
   width:100%;
-  margin:25px auto;
+  margin:auto;
   position:relative;
   border:1px solid black;
 
@@ -70,7 +117,7 @@ p {
 
 .chat {
   width:80%;
-  background:lightgreen;
+  background:#63A3A5;
   height:100%;
   border:black 1px solid;
   float:left;
@@ -80,7 +127,8 @@ p {
   width:20%;
   height:100%;
   float:left;
-  background:green;
+  background:grey;
+  border:1px solid black;
 }
 
 .messages {
@@ -133,23 +181,26 @@ p {
 //                                    Index
 //=============================================================================
 
-h1 {
-  font-size:71px;
+h2 {
+  font-size:32px;
+  color:white;
+  background:linear-gradient(black,#1F2429);
+  text-shadow:0 1px 3px grey;
+  text-align:center;
+  margin:0;
+  padding:100px 0 50px 0;
 }
 
 .container {
-  background:#eef0f1;
+  background:#1F242A;
   padding:20px;
   margin:0 auto;
   display:inline-block;
   width:100%;
   text-align:center;
   font-size:20px;
-  h2 {
-    font-size:32px;
-    text-align:left;
-  }
 }
+
 
 .game-container {
   background:#006500;
@@ -157,13 +208,20 @@ h1 {
   color: white;
   padding:16px;
   width:373px;
-  height:168px;
+  height:190px;
   float:left;
   margin:0px 30px 20px 0;
   border-radius:8px;
   border:1px solid white;
   overflow:hidden;
-  box-shadow:0 3px 7px grey;
+  box-shadow:0 2px 15px grey;
+
+  .game-time {
+    margin-top:10px;
+    float:left;
+    font-size:18px;
+    color:#000;
+  }
 
   img {
     float:left;
@@ -183,6 +241,7 @@ h1 {
   width:100%;
   height:50px;
   display:inline-block;
+  @include clearfix;
 }
 
 .team-name {
@@ -202,26 +261,37 @@ h1 {
   vertical-align:middle;
   color:white;
   text-align:center;
-  padding-top:5px;
+  padding-top:7px;
   font-size:28px;
+  @include clearfix;
 }
 
 .logout {
+  text-align:center;
+  margin:20px auto;
   padding:6px 11px;
   background:#569BF6;
   display:inline-block;
   border-radius:0;
-  border:1px solid black;
-  box-shadow:inset 0 -2px 3px #161d27;
+  border:1px solid #226AC8;
+  box-shadow:inset 0 -1px 2px #0d56b5;
   cursor:pointer;
-  transition:all .1s linear;
+  transition:border-radius .1s linear;
 
   &:hover {
-    border-radius:8px;
-    padding:9px 16px;
+    border-radius:5px;
   }
 
   &:active {
     box-shadow:inset 0 2px 4px #377cd7;
   }
+}
+
+.inner-container {
+  //To be removed after presentation!!
+  padding-left:30px;
+  //To be removed after presentation!!
+  display:inline-block;
+  margin:0 auto;
+  text-align:center;
 }

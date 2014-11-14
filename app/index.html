@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <title>FinalProject</title>
         <meta name="description" content="">
+        <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
@@ -26,11 +27,14 @@
       <![endif]-->
 
       <script type='text/x-handlebars' data-template-name='index'>
-      <!--<header>
-        <h1>Interception</h1>
-      </header>-->
+      <header>
+          <h1>Interception</h1>
+          <h3>Catch all of the Action</h3>
+        <img src='http://a.espncdn.com/photo/2014/0102/mag_pe_ironbowl_1600x700.jpg'>
+      </header>
+      <h2>Upcoming and Live Games</h2>
       <div class='container'>
-        <h2>Upcoming Games</h2>
+        <div class='inner-container'>
           {{#each}}
             {{#link-to 'game' this}}
               <div class='game-container'>
@@ -45,10 +49,11 @@
                   <span class='team-name'>{{teamTwo.teamName}}</span>
                   <div class='index-scoreboard'>{{teamTwo.totalScore}}</div>
                 </div>
+                <div class='game-time'>{{timeLeft}}</div>
               </div>
             {{/link-to}}
           {{/each}}
-        <div class='logout' {{action "logout"}}>Log Out</div>
+        </div>
       </div>
       </script>
 
