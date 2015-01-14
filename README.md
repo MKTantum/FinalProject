@@ -1,0 +1,2 @@
+# FinalProject
+This was my final project for The Iron Yard. It serves as a hub for all college football fans to check up with and communicate about all college football games per given week. It uses a Node server I have written to reach out to an API I structured with Kimono Labs to pull the data from. This information then updates my Firebase backend server which, in turn, updates the client in real-time using the Ember JavaScript framework.
